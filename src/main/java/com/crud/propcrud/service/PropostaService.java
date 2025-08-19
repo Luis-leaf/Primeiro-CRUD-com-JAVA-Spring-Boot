@@ -31,6 +31,7 @@ public class PropostaService {
 
     public Proposta atualizar(Long id, Proposta proposta){
         if(propostaRepository.existsById(id)){
+            proposta.setId(id);
             return propostaRepository.save(proposta);
         } else {
             throw new RuntimeException("Proposta não encontrada");
