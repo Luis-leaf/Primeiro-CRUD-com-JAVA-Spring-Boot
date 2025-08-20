@@ -1,11 +1,12 @@
 package com.crud.propcrud.model;
 
-// import java.time.LocalDate;
+import java.time.LocalDate;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.PrePersist;
 
 @Entity
 public class Proposta {
@@ -15,19 +16,30 @@ public class Proposta {
     private String cliente;
     private String local;
     private String servico;
-    // private LocalDate data;
+    private int validade;
+    private LocalDate data;
     private double valor;
 
     //construtores
 
-    public Proposta(String cliente, String local, String servico, double valor){
+    public Proposta(String cliente, String local, String servico, int validade, double valor){
         this.cliente = cliente;
         this.local = local;
         this.servico = servico;
+        this.validade = validade;
         this.valor = valor;
+        this.data = LocalDate.now();
     }
 
     public Proposta(){}
+    
+    //Para setar a data na criação
+    @PrePersist
+    protected void naCriacao(){
+        if(this.data == null){
+            this.data = LocalDate.now();
+        }
+    }
     
     // getters e setters
 
@@ -63,12 +75,28 @@ public class Proposta {
         this.servico = servico;
     }
 
+    public int getValidade(){
+        return validade;
+    }
+
+    public void setValiade(int validade){
+        this.validade = validade;
+    }
+
     public double getValor(){
         return valor;
     }
 
     public void setValor(double valor){
         this.valor = valor;
+    }
+
+    public LocalDate getData(){
+        return data;
+    }
+
+    public void setData(LocalDate data){
+        this.data = LocalDate.now();
     }
 
 }
