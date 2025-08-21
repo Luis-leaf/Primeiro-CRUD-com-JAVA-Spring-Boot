@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 
 
+
 @RestController
 @RequestMapping("/propostas")
 public class PropostaController {
@@ -51,5 +52,11 @@ public class PropostaController {
     public Proposta atualizar(@PathVariable Long id, @RequestBody Proposta proposta){
         return propostaService.atualizar(id, proposta);
     }
+
+    @PostMapping("/salvartodas")
+    public List<Proposta> salvarTodas(@RequestBody List<Proposta> propostas) {
+        return propostaService.salvarPropostas(propostas);
+    }
+    
     
 }

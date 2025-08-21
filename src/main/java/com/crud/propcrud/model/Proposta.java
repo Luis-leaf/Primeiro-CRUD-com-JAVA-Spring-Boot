@@ -79,7 +79,7 @@ public class Proposta {
         return validade;
     }
 
-    public void setValiade(int validade){
+    public void setValidade(int validade){
         this.validade = validade;
     }
 

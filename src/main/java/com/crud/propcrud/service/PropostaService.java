@@ -42,4 +42,8 @@ public class PropostaService {
         propostaRepository.deleteById(id);
     }
 
+    public List<Proposta> salvarPropostas(List<Proposta> propostas){
+        return propostaRepository.saveAll(propostas);
+    }
+
 }
